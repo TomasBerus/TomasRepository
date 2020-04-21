@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Order</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-inverse bg-dark">
+			<a class="navbar-brand" th:href="@{/buildings/}">Back</a>
+		</nav>
+		<div class="page-header" id="banner">
+
+			<div class="row">
+				<div class="col-lg-8 col-md-7 col-sm-6">
+					<h1>Building</h1>
+
+					<form class="form-horizontal"
+						th:action="@{/ordercreate/{buildingID}/(buildingID=${building.buildingID})}"
+						method="post" enctype="multipart/form-data">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-lg-1 control-label">Address</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" disabled="disabled"
+										th:value="${building.address}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 control-label">City</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" disabled="disabled"
+										th:value="${building.city}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 control-label">Type</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" disabled="disabled"
+										th:value="${building.buildingType}" />
+								</div>
+							</div>
+
+
+
+						</fieldset>
+					</form>
+					<div class="col-lg-6 col-md-4 col-sm-3">
+						<h1>Rooms</h1>
+						<div class="container">
+							<div class="form-group blu-margin col-lg-6">
+								<select name="roomID" class="form-control " 
+									id="roomID">
+									<option value="0">Select a room</option>
+									<option th:each="room : ${rooms}"
+										th:value="${room.roomID}" th:text="${room.roomNumber + ' ' + room.roomType}"></option>
+								</select>
+							</div>
+
+						</div>
+						<form class="form-horizontal"  method="post"
+						enctype="multipart/form-data">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-lg-6 control-label required=required">Email</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" name="email" required placeholder="Enter email"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-6 control-label">Password</label>
+								<div class="col-lg-6">
+									<input type="password" class="form-control" name="password" placeholder="Password"
+										required />
+								
+								</div>
+							</div>
+							<div class="form-group">
+
+								<div class="col-lg-6">
+								<label class="col-lg-7control-label disabled">Price in euro</label>	
+									<input type="text" class="form-control" disabled="disabled" th:name ="totalPrice"
+										th:value="200" />
+								</div>
+								
+							</div>
+							<div class="form-group">
+							<label class="col-lg-2 control-label">In date</label>
+							<div class="col-lg-6">
+								<input type="text" class="form-control" name="inDate" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2 control-label">Out date</label>
+							<div class="col-lg-6">
+								<input type="text" class="form-control" name="outDate" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+									<label class="col-lg-2 control-label">Pay type</label>
+									<div class="col-lg-6">
+										<select name="paytype" class="form-control">
+											<option value="Card">Card</option>
+											<option value="Cash">Cash</option>
+											
+										</select>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<div class="col-lg-5 col-lg-offset-6">
+										<button type="submit" class="btn btn-primary" name="button">Create order</button>
+									</div>
+
+								</div>
+							
+						</fieldset>
+						
+						
+					</form>
+					
+					<div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/></div>
+						
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</html>

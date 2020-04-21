@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Registry</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+	<nav class="navbar navbar-inverse bg-dark">
+			<a class="navbar-brand" th:href="@{/login}">Back</a>
+		</nav>
+		<div class="page-header" id="banner">
+			<div class="row">
+				<div class="col-lg-8 col-md-7 col-sm-6">
+					<h1>Register a new client</h1>
+
+					<form class="form-horizontal" th:action="@{/clientregistry/}"
+						method="post" enctype="multipart/form-data">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">Email</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" name="email" required/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">First name</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" name="firstName" required/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">Last name</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" name="lastName" required/>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-lg-2 control-label">Password</label>
+								<div class="col-lg-6">
+									<input type="password" class="form-control" name="password" required/ >
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-lg-2 control-label">Phone number</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" name="number" required/>
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<div class="col-lg-5 col-lg-offset-6">
+									<button type="submit" class="btn btn-primary" name="button">Register</button>
+								</div>
+
+							</div>
+						</fieldset>
+					</form>
+					<div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/></div>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

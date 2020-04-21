@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Room</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+	<div class="container">
+		<div class="page-header" id="banner">
+			<div class="row">
+				<div class="col-lg-8 col-md-7 col-sm-6">
+					<h1>Are you sure you want to delete Room:</h1>
+
+					<form class="form-horizontal"
+						th:action="@{/roomdelete/{roomID}/(roomID=${room.roomID})}"
+						method="post" enctype="multipart/form-data">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-lg-1 control-label">Number</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" name="roomNumber"
+										disabled th:value="${room.roomNumber}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 control-label">Type</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" name="roomType"
+										disabled th:value="${room.roomType}" />
+								</div>
+							</div>
+
+						</fieldset>
+					</form>
+					<div class="form-group">
+					<a th:href="@{/roomdelete/{roomID}/(roomID=${room.roomID})}" th:action="@{/roomdelete/{roomID}/(roomID=${room.roomID})}"
+						class="btn btn-danger" type="button">Delete</a>
+						</div>
+						 <a
+						th:href="@{/building/{buildingID}/(buildingID=${building.buildingID})}"><button class="btn btn-primary hBack"
+							type="button">Back</button></a>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+	</html>

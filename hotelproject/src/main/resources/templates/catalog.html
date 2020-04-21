@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Catalog</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+	<div class="container">
+		<div class="page-header" id="banner">
+			<div class="row">
+				<div class="col-lg-8 col-md-7 col-sm-6"></div>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Address</th>
+							<th>Type</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="building : ${buildings}">
+				    	<td th:text="${building.address}"></td>
+				    	<td>
+				    		<span th:each="building : ${buildings}"></span>
+				    			<span th:text="${building.buildingType}"/></span>
+				    	</td>
+				    	<td>
+					    	<a th:href="@{/ordercreate/{buildingID}/(buildingID=${building.buildingID})}">Select</a>
+				    	</td>
+				    	
+				    </tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</html>

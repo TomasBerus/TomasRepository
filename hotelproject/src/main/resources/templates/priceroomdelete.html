@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Price</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+<div class="container">
+		<div class="page-header" id="banner">
+			<div class="row">
+				<div class="col-lg-8 col-md-7 col-sm-6">
+					<h1>Are you sure you want to delete Room:</h1>
+
+					<form class="form-horizontal"
+						th:action="@{/priceroomdelete/{priceID}/(priceID=${price.priceID})}"
+						method="post" enctype="multipart/form-data">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-lg-1 control-label">Price</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" name="basePrice"
+										disabled th:value="${price.basePrice}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 control-label">Type</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" name="priceAddon"
+										disabled th:value="${price.priceAddon}" />
+								</div>
+							</div>
+
+						</fieldset>
+					</form>
+					
+						 
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

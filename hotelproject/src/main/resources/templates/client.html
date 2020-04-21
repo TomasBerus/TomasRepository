@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Client page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+	<div class="container">
+	<nav class="navbar navbar-inverse bg-dark">
+			<a class="navbar-brand" th:href="@{/buildings/}">Back</a>
+		</nav>
+		<div class="page-header" id="banner">
+			<div class="row">
+
+
+				<div class="col-lg-4 col-md-2 col-sm-1">
+					<ul class="list-group">
+						<li class="list-group-item" th:text="${client.firstName}"></li>
+						<li class="list-group-item" th:text="${client.lastName}"></li>
+						<li class="list-group-item" th:text="${client.email}"></li>
+						<li class="list-group-item" th:text="${client.phoneNumber}"></li>
+
+					</ul>
+
+
+
+					
+					<div class="col-lg-5 col-md-2 col-sm-1">
+
+						<a
+							th:href="@{/clientupdate/{clientID}/(clientID=${client.clientID})}"><button
+								class="btn btn-primary hBack" type="button">Edit Client
+								details</button></a>
+					</div>
+					<div class="col-lg-4 col-md-2 col-sm-1">
+					<a th:href="@{/clientpasschange/{clientID}/(clientID=${client.clientID})}"><button
+							class="btn btn-primary hBack" type="button">Change
+							password</button></a>
+				</div>
+
+
+				</div>
+
+				
+
+			</div>
+		</div>
+	</div>
+
+
+
+</body>
+</html>

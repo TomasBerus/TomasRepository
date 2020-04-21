@@ -1,0 +1,249 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Building</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-inverse bg-dark" >
+			<a class="navbar-brand" th:href="@{/buildings/}">Back</a>
+		</nav>
+		<div class="page-header" id="banner">
+
+			<div class="row">
+				<div class="col-lg-8 col-md-7 col-sm-6">
+					<h1>Building</h1>
+
+					<form class="form-horizontal"
+						th:action="@{/building/{buildingID}/(buildingID=${building.buildingID})}"
+						method="post" enctype="multipart/form-data">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-lg-1 control-label">Address</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" disabled="disabled"
+										th:value="${building.address}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 control-label">City</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" disabled="disabled"
+										th:value="${building.city}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 control-label">Type</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" disabled="disabled"
+										th:value="${building.buildingType}" />
+								</div>
+							</div>
+
+
+
+						</fieldset>
+					</form>
+
+
+					<div class="col-lg-6 col-md-4 col-sm-3">
+						<h1>Rooms</h1>
+
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th>Number</th>
+									<th>Type</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="room : ${rooms}">
+									<td th:text="${room.roomNumber}"></td>
+									<td><span th:each="room : ${rooms}"></span> <span
+										th:text="${room.roomType}" /></span></td>
+									<td>
+									<td><span th:each="room : ${rooms}"></span>
+									<td><a th:href="@{/room/{roomID}/(roomID=${room.roomID})}">View</a>
+									</td>
+									<td><a
+										th:href="@{/roomdelete/{roomID}/(roomID=${room.roomID})}">Delete</a>
+									</td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-6 col-md-5
+								 col-sm-5 pool-right">
+							<h1>Add a Room</h1>
+
+							<form
+								th:action="@{/building/{buildingID}/(buildingID=${building.buildingID})}"
+								method="post" enctype="multipart/form-data"
+								class="form-horizontal">
+								<fieldset>
+									<div class="form-group">
+
+										<div class="col-lg-5">
+											<input type="hidden" class="form-control" disabled="disabled"
+												th:value="${building.buildingID}" />
+										</div>
+									</div>
+									<div class="form-group">
+
+										<label class="col-lg-3 control-label ">Number</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control" name="roomNumber" required/>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-lg-3 control-label">Type</label>
+										<div class="col-lg-9">
+											<select name="roomType" class="form-control" required>
+												<option value="Luxury">Luxury</option>
+												<option value="Double">Double</option>
+												<option value="Single">Single</option>
+												<option value="Family">Family</option>
+												<option value="Studio">Studio</option>
+											</select>
+										</div>
+									</div>
+									<label class="col-lg-3 control-label">Description</label>
+									<div class="col-lg-9">
+										<input type="text" class="form-control input" required
+											name="description" />
+									</div>
+									<div class="row">
+										<div class="form-group">
+											<div class="col-lg-12 col-lg-offset-6">
+												<button type="submit" class="btn btn-primary float-sm-right"
+													name="createRoom" value="create">Create</button>
+											</div>
+										</div>
+
+									</div>
+								</fieldset>
+							</form>
+<div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/></div>
+						</div>
+
+
+
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<div class="container">
+
+		<div class="row">
+		 <div class="col-lg-8 col-md-7 col-sm-6">
+				<h1>Add buildings price</h1>
+
+				<form class="form-horizontal"
+					th:action="@{/building/{buildingID}/(buildingID=${building.buildingID})}"
+					method="post" enctype="multipart/form-data">
+					<fieldset>
+						<div class="form-group">
+							<label class="col-lg-2 control-label">Price</label>
+							<div class="col-lg-6">
+								<input type="text" class="form-control" name="basePrice" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2 control-label">Seasonal addon</label>
+							<div class="col-lg-6">
+								<input type="text" class="form-control" name="priceAddon" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2 control-label">Type</label>
+							<div class="col-lg-6">
+								<select name="priceType" class="form-control" required>
+									<option value="Spring">Spring</option>
+									<option value="Summer">Summer</option>
+									<option value="Autumn">Autumn</option>
+									<option value="Winter">Winter</option>
+									<option value="Special">Special</option>
+									<option value="Special">None</option>
+								</select>
+							</div>
+						</div>
+
+
+
+
+						<div class="form-group">
+							<div class="col-lg-5 col-lg-offset-8">
+								<button type="submit" class="btn btn-primary"
+									name="createBuildingPrice">Add</button>
+							</div>
+
+						</div>
+					</fieldset>
+				</form>
+
+			</div>
+			<div class="col-lg-6 col-md-4 col-sm-3">
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Type</th>
+							<th>Base</th>
+							<th></th>
+							<th>Addon</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="price : ${prices}">
+							<td th:text="${price.priceType}"></td>
+							
+							<td><span th:each="price : ${prices}"></span> <span
+								th:text="${price.basePrice}" /></span></td>
+							<td>
+							<td><span th:each="price : ${prices}"></span> <span
+								th:text="${price.priceAddon}" /></span></td>
+							<td>
+							<a
+										th:href="@{/pricebuilding/{priceID}/(priceID=${price.priceID})}">Edit</a></td>
+							
+							<td><a
+										th:href="@{/pricebuildingdelete/{priceID}/(priceID=${price.priceID})}">Delete</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+
+
+
+</body>
+</html>

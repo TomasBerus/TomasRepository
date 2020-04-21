@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Building Update</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+	<div class="container">
+	<nav class="navbar navbar-inverse bg-dark">
+			<a class="navbar-brand" th:href="@{/buildings/}">Back</a>
+		</nav>
+		<div class="page-header" id="banner">
+			<div class="row">
+				<div class="col-lg-8 col-md-7 col-sm-6">
+					<h1>Building</h1>
+
+					<form class="form-horizontal"
+						th:action="@{/buildingupdate/{buildingID}/(buildingID=${building.buildingID})}"
+						method="post" enctype="multipart/form-data">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-lg-1 control-label">Address</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" name="address" required
+										th:value="${building.address}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 control-label">City</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" name="city" required
+										th:value="${building.city}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 control-label">Type</label>
+								<div class="col-lg-6">
+									<select name="buildingType" class="form-control" required>
+												<option >Please select the type</option>
+												<option value="Luxury">Luxury</option>
+												<option value="Apartments">Apartments</option>
+												<option value="Hotel">Hotel</option>
+												<option value="Dorm">Dorm</option>
+												<option value="Office">Office</option>
+											</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-1 col-lg-offset-1">
+									<button type="submit"  class="btn btn-primary" name="button">Update</button>
+								</div>
+
+							</div>
+						</fieldset>
+					</form>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>
+	
