@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Weather</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+	<div class="container">
+		<div class="col-lg-6 col-md-4 col-sm-3">
+
+
+			<h1>Weather in Vilnius</h1>
+
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>Date and time</th>
+						<th>C</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+				    <tr th:each="weather : ${weathers}">
+				    	<td th:text="${weather.observation_time}"></td>
+				    	<td>
+				    		<span th:each="weather : ${weathers}"></span>
+				    			<span th:text="${weather.value}"/></span>
+				    	</td>
+				    	
+				    </tr>
+				</tbody>
+			</table>
+
+		</div>
+
+	</div>
+</body>
