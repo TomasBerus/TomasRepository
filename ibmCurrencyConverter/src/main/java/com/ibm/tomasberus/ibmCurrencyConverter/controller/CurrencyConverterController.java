@@ -11,7 +11,7 @@ public class CurrencyConverterController {
 	@Autowired
 	CurrencyService currencyService;
 	
-	@GetMapping(value ="/currencies")
+	@GetMapping()
 	public String getCurrencies() {
 		return currencyService.getCurrencyString();
 	}
