@@ -42,7 +42,7 @@
 				    	<td th:text="${building.address}"></td>
 				    	<td>
 				    		<span th:each="building : ${buildings}"></span>
-				    			<span th:text="${building.buildingType}"/></span>
+				    			<span th:text="${building.buildingType}"/>
 				    	</td>
 				    	<td>
 					    	<a th:href="@{/building/{buildingID}/(buildingID=${building.buildingID})}">Add room</a>
