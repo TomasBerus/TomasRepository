@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -17,8 +18,10 @@ import com.ibm.tomasberus.ibmCurrencyConverter.repository.CurrencyRepository;
 public class CurrencyService {
 	@Autowired
 	private CurrencyRepository currencyRepository;
-
-	public List<CurrencyBase> getCurrenciesFromAPI() {
+	
+	
+	@Scheduled(cron = "0 0 0 * * *", zone="GMT+3")
+	public void addCurrencies() {
 		XmlMapper xmlMapper = new XmlMapper();
 		List<CurrencyBase> currencyList = null;
 		try {
@@ -30,10 +33,6 @@ public class CurrencyService {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		return currencyList;
-	}
-
-	public void addCurrencies(List<CurrencyBase> currencyList) {
 
 		try {
 			for (int a = 0; a < currencyList.size(); a++) {

@@ -1,6 +1,6 @@
 package com.ibm.tomasberus.ibmCurrencyConverter.model;
 
-import javax.persistence.Entity;
+import javax.persistence.Entity; 
 import javax.persistence.Id;
 
 

@@ -45,8 +45,7 @@
 					<div class="col-md-2" th:object="${ConvertionCurrency}">
 						<select class="form-control" id="toCurrency" name="toCurrency">
 
-							<option 
-								th:each="ConvertionCurrency : ${ConvertionCurrency}"
+							<option th:each="ConvertionCurrency : ${ConvertionCurrency}"
 								th:value="${ConvertionCurrency.currencyName}"
 								th:text="${ConvertionCurrency.currencyName}"></option>
 						</select>
@@ -54,21 +53,34 @@
 					<div class="col-md-4">
 
 						<div class="float-right">
-							<input type="text" class="form-control" placeholder="Amount"
-								id="amount" name="amount">
+							<input type="number" class="form-control" placeholder="Amount"
+								name="amount" min="1" step="0.001">
 						</div>
 
 						<br>
 					</div>
 					<div class="form-group">
 						<div class="col-lg-6 col-md-offset-1">
-							<button type="submit" class="btn btn-primary" name="button">Create</button>
+							<button type="submit" class="btn btn-primary" name="button">Convert</button>
 						</div>
 					</div>
-					<div th:if="${result}" th:text="'Convertion is ' + ${result}"
-						th:class="${'alert '+ successClass} " /></div>
-					<div th:if="${message}" th:text="${message}"
-						th:class="${'alert ' + alertClass}" /></div>
+					<h4 class="col-md-6 ">
+						<div th:if="${result}"
+							th:text="'The entered amount worth in EUR is '+${enteredAmount}"
+							th:class="${'alert '+ successClass} "></div>
+
+						<div th:if="${result}"
+							th:text="'In '+${currencyUsed}+' it is worth:'"
+							th:class="${'alert '+ successClass} "></div>
+						<div th:if="${result}" th:text="${result}"
+							th:class="${'alert '+ successClass} "></div>
+					</h4>
+
+					<h3 class="col-md-6 col-md-offset-1">
+						<div th:if="${message}" th:text="${message}"
+							th:class="${'alert ' + alertClass}"></div>
+					</h3>
+
 				</fieldset>
 			</form>
 		</div>
