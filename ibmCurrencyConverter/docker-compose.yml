@@ -1,0 +1,27 @@
+version: '1'
+
+services:
+
+  mysql-standalone:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=slaptaszodis
+      - MYSQL_DATABASE=currency
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=slaptaszodis
+    ports:
+      - 3306:3306
+
+  ibmcurrencyconverter:
+    image: ibmcurrencyconverter
+    restart: on-failure
+    depends_on:
+      - mysql-standalone
+    ports:
+      - 8080:8080
+    environment:
+      - DATABASE_HOST=mysql-standalone
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=slaptaszodis
+      - DATABASE_NAME=currency
+      - DATABASE_PORT=3306

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +24,12 @@ public class CurrencyConverterController {
 	@Autowired
 	UserActionService userActionService;
 
+	@GetMapping("/")
+    public String index()
+    {
+        return "redirect:/index";
+    }
+
 	@RequestMapping(method = RequestMethod.GET, value = "/index")
 	public String currency(Model model, Double amount) {
 		amount = (double) 1;
@@ -30,14 +37,14 @@ public class CurrencyConverterController {
 			currencyService.addCurrencies();
 			List<ConvertionCurrency> currency = currencyService.getCurrencyRatesFromDatabase();
 			model.addAttribute("currency", currency);
-			return "redirect:/index/";
+			return "redirect:/index";
 		} else {
 			List<ConvertionCurrency> ConvertionCurrency = currencyService.getCurrencyRatesFromDatabase();
 			model.addAttribute("ConvertionCurrency", ConvertionCurrency);
 
 		}
 
-		return "index";
+		return "/index";
 
 	}
 
@@ -67,7 +74,7 @@ public class CurrencyConverterController {
 			redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
 		}
 
-		return "redirect:/index/";
+		return "redirect:/index";
 
 	}
 }
