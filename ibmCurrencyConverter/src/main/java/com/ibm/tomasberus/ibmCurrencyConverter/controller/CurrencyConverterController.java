@@ -30,7 +30,7 @@ public class CurrencyConverterController {
         return "redirect:/index";
     }
 
-	@RequestMapping(method = RequestMethod.GET, value = "/index")
+	@GetMapping(value = "/index")
 	public String currency(Model model, Double amount) {
 		amount = (double) 1;
 		if (currencyService.checkCurrencyDatabase().equals(false)) {
